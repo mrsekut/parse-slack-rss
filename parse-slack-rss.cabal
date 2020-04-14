@@ -1,0 +1,65 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: eb5b493d2b5c13961b9455df1141dddae01388a1d5dedeccc073d3a7d0826b43
+
+name:           parse-slack-rss
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/mrsekut/parse-slack-rss#readme>
+homepage:       https://github.com/mrsekut/parse-slack-rss#readme
+bug-reports:    https://github.com/mrsekut/parse-slack-rss/issues
+author:         mrsekut
+maintainer:     example@example.com
+copyright:      2020 mrsekut
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/mrsekut/parse-slack-rss
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_parse_slack_rss
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , scalpel
+  default-language: Haskell2010
+
+executable parse-slack-rss-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_parse_slack_rss
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , parse-slack-rss
+    , scalpel
+  default-language: Haskell2010
+
+test-suite parse-slack-rss-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_parse_slack_rss
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , parse-slack-rss
+    , scalpel
+  default-language: Haskell2010
