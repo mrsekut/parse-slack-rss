@@ -5,6 +5,7 @@ module Main where
 import           Text.HTML.Scalpel       hiding ( URL )
 import           Data.Maybe
 import           Text.Printf
+import           Data.List                      ( nub )
 
 
 main :: IO ()
@@ -13,17 +14,17 @@ main = do
     let lists = scrapeStringLike html allBlog
 
     printf "組織\n"
-    mapM_ print $ maybe [] (filter (\(Blog _ _ t) -> t)) lists
+    mapM_ print . nub $ maybe [] (filter (\(Blog _ _ t) -> t)) lists
 
     printf "\n個人\n"
-    mapM_ print $ maybe [] (filter (\(Blog _ _ t) -> not t)) lists
+    mapM_ print . nub $ maybe [] (filter (\(Blog _ _ t) -> not t)) lists
 
 
 type Title = String
 type URL = String
 type IsIndividual = Bool -- "tech-blog" or "tech-blog-individual"
 
-data Blog = Blog Title URL Bool
+data Blog = Blog Title URL Bool deriving (Eq)
 
 instance Show Blog where
     show (Blog title url _) = printf " [%s %s]" url title
